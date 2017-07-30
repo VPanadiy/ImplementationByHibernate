@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>dream.development</groupId>
+    <artifactId>RestaurantAPI</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <url>https://github.com/VPanadiy</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <version-maven-compiler-plugin>3.1</version-maven-compiler-plugin>
+        <version-maven-jar-plugin>3.0.2</version-maven-jar-plugin>
+        <version-maven-surefire-plugin>2.12.4</version-maven-surefire-plugin>
+        <version-maven-project-info-reports-plugin>2.7</version-maven-project-info-reports-plugin>
+
+        <version-junit>4.11</version-junit>
+
+        <version-postgresql>9.1-901.jdbc4</version-postgresql>
+        <version-c3p0>0.9.5.2</version-c3p0>
+
+        <version-slf4j-api>1.7.25</version-slf4j-api>
+        <version-logback-classic>1.2.3</version-logback-classic>
+
+        <version-spring-context>4.3.7.RELEASE</version-spring-context>
+        <version-spring-beans>4.3.7.RELEASE</version-spring-beans>
+        <version-spring-jdbc>4.3.7.RELEASE</version-spring-jdbc>
+        <version-spring-core>4.3.7.RELEASE</version-spring-core>
+        <version-spring-orm>4.3.7.RELEASE</version-spring-orm>
+
+        <version-hibernate-core>5.2.10.Final</version-hibernate-core>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${version-maven-compiler-plugin}</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${version-maven-jar-plugin}</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${version-maven-surefire-plugin}</version>
+                <configuration>
+                    <includes>
+                    </includes>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${version-maven-project-info-reports-plugin}</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${version-junit}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${version-postgresql}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mchange</groupId>
+            <artifactId>c3p0</artifactId>
+            <version>${version-c3p0}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${version-slf4j-api}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${version-logback-classic}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${version-spring-context}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${version-spring-beans}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${version-spring-jdbc}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${version-spring-core}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${version-spring-orm}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${version-hibernate-core}</version>
+        </dependency>
+
+    </dependencies>
+
+</project>

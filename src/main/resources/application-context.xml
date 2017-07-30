@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="main" class="dream.development.hibernate.Main">
+        <property name="employeeController" ref="employeeController"/>
+        <property name="dishController" ref="dishController"/>
+        <property name="orderController" ref="orderController"/>
+        <property name="menuController" ref="menuController"/>
+        <property name="ingredientController" ref="ingredientController"/>
+        <property name="warehouseController" ref="warehouseController"/>
+        <property name="dishCreatedController" ref="dishCreatedController"/>
+    </bean>
+
+    <bean id="employeeController" class="dream.development.hibernate.controllers.EmployeeController">
+        <property name="employeeDao" ref="employeeDao"/>
+    </bean>
+
+    <bean id="dishController" class="dream.development.hibernate.controllers.DishController">
+        <property name="dishDao" ref="dishDao"/>
+        <property name="ingredientDao" ref="ingredientDao"/>
+        <property name="menuDao" ref="menuDao"/>
+        <property name="warehouseDao" ref="warehouseDao"/>
+    </bean>
+
+    <bean id="orderController" class="dream.development.hibernate.controllers.OrderController">
+        <property name="ordersDao" ref="orderDao"/>
+        <property name="dishDao" ref="dishDao"/>
+        <property name="employeeDao" ref="employeeDao"/>
+        <property name="dishOrdersDao" ref="dishOrdersDao"/>
+        <property name="dishCreatedDao" ref="dishCreatedDao"/>
+    </bean>
+
+    <bean id="menuController" class="dream.development.hibernate.controllers.MenuController">
+        <property name="menuDao" ref="menuDao"/>
+        <property name="dishDao" ref="dishDao"/>
+    </bean>
+
+    <bean id="ingredientController" class="dream.development.hibernate.controllers.IngredientController">
+        <property name="ingredientDao" ref="ingredientDao"/>
+        <property name="warehouseDao" ref="warehouseDao"/>
+    </bean>
+
+    <bean id="warehouseController" class="dream.development.hibernate.controllers.WarehouseController">
+        <property name="warehouseDao" ref="warehouseDao"/>
+        <property name="ingredientDao" ref="ingredientDao"/>
+    </bean>
+
+    <bean id="dishCreatedController" class="dream.development.hibernate.controllers.DishCreatedController">
+        <property name="dishCreatedDao" ref="dishCreatedDao"/>
+        <property name="ordersDao" ref="orderDao"/>
+        <property name="dishOrdersDao" ref="dishOrdersDao"/>
+        <property name="employeeDao" ref="employeeDao"/>
+        <property name="dishDao" ref="dishDao"/>
+    </bean>
+
+    <bean id="employeeDao" class="dream.development.hibernate.dao.hibernate.HEmployeeDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="dishDao" class="dream.development.hibernate.dao.hibernate.HDishDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="orderDao" class="dream.development.hibernate.dao.hibernate.HOrderDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="menuDao" class="dream.development.hibernate.dao.hibernate.HMenuDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="ingredientDao" class="dream.development.hibernate.dao.hibernate.HIngredientDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="warehouseDao" class="dream.development.hibernate.dao.hibernate.HWarehouseDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="dishCreatedDao" class="dream.development.hibernate.dao.hibernate.HDishCreatedDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="dishOrdersDao" class="dream.development.hibernate.dao.hibernate.HDishOrdersDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+</beans>
