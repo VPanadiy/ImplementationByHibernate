@@ -1,8 +1,10 @@
 package dream.development.hibernate.controllers;
 
-import dream.development.hibernate.model.Employee;
 import dream.development.hibernate.dao.interfaces.EmployeeDao;
+import dream.development.hibernate.model.Employee;
 import dream.development.hibernate.model.enums.Position;
+import dream.development.hibernate.model.extedentClasses.Cook;
+import dream.development.hibernate.model.extedentClasses.Waiter;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -68,28 +70,39 @@ public class EmployeeController {
 
     @Transactional(propagation = Propagation.MANDATORY)
     public void createEmployee() throws ParseException {
+        Employee employee;
         Scanner scanner = new Scanner(System.in);
 
-        Employee employee = new Employee();
-
         System.out.println("Enter surname: ");
-        employee.setSurname(scanner.nextLine());
+        String surname = scanner.nextLine();
         System.out.println("Enter name: ");
-        employee.setName(scanner.nextLine());
+        String name = scanner.nextLine();
         System.out.println("Enter date birth (date format: yyyy-MM-dd): ");
         String date_birth = scanner.next();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date = dateFormat.parse(date_birth);
         Instant instant = date.toInstant();
-        employee.setDateBirth(instant.atZone(ZoneId.systemDefault()).toLocalDate());
         scanner.nextLine();
         System.out.println("Enter phone number (eg. +38(044)777-77-77): ");
-        employee.setPhoneNumber(scanner.nextLine());
+        String phoneNumber = scanner.nextLine();
         System.out.println("Enter appointment: ");
         Position appointment = Position.valueOf(scanner.nextLine().toUpperCase());
-        employee.setPosition(appointment);
         System.out.println("Enter salary: ");
-        employee.setSalary(scanner.nextFloat());
+        float salary = scanner.nextFloat();
+
+        if (appointment.equals(Position.COOK)) {
+            employee = new Cook();
+        } else if (appointment.equals(Position.WAITER)) {
+            employee = new Waiter();
+        } else {
+            employee = new Employee();
+        }
+        employee.setSurname(surname);
+        employee.setName(name);
+        employee.setDateBirth(instant.atZone(ZoneId.systemDefault()).toLocalDate());
+        employee.setPhoneNumber(phoneNumber);
+        employee.setPosition(appointment);
+        employee.setSalary(salary);
         scanner.close();
 
         employeeDao.insert(employee);

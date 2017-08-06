@@ -20,7 +20,7 @@ public class HIngredientDao implements IngredientDao {
 
     private SessionFactory sessionFactory;
 
-    public static final Logger LOGGER = LoggerFactory.getLogger(HDishDao.class);
+    public static final Logger LOGGER = LoggerFactory.getLogger(HIngredientDao.class);
 
     @Override
     @Transactional(propagation = Propagation.MANDATORY)

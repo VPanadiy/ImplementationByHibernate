@@ -78,15 +78,19 @@ public class MenuController {
         do {
             System.out.println("Do you want to add dish into menu (y/n)");
             String answer = scanner.nextLine();
-            if (answer.equals("y")) {
-                List<Dish> dishesGetList = new ArrayList<>();
-                List<Dish> dishList = getDishes(scanner, dishesGetList, false);
-                menu.setDishes(dishList);
-                exit = true;
-            } else if (answer.equals("n")) {
-                exit = true;
-            } else {
-                System.out.println("Wrong answer!");
+            switch (answer) {
+                case "y":
+                    List<Dish> dishesGetList = new ArrayList<>();
+                    List<Dish> dishList = getDishes(scanner, dishesGetList, false);
+                    menu.setDishes(dishList);
+                    exit = true;
+                    break;
+                case "n":
+                    exit = true;
+                    break;
+                default:
+                    System.out.println("Wrong answer!");
+                    break;
             }
 
         } while (!exit);
@@ -97,7 +101,6 @@ public class MenuController {
     private List<Dish> getDishes(Scanner scanner, List<Dish> dishesGetList, boolean isRemove) {
         Set<Dish> dishesSet = new HashSet<>(dishDao.getAll());
         List<String> dishNameList = new ArrayList<>();
-        List<Dish> dishList = dishesGetList;
         String dishName;
         int count = 1;
 
@@ -124,10 +127,10 @@ public class MenuController {
 
             if (searchDish) {
                 if (!isRemove) {
-                    dishList.add(dishDao.getByName(dishName));
+                    dishesGetList.add(dishDao.getByName(dishName));
                     count++;
                 } else {
-                    dishList.remove(dishDao.getByName(dishName));
+                    dishesGetList.remove(dishDao.getByName(dishName));
                     count++;
                 }
             } else {
@@ -135,7 +138,7 @@ public class MenuController {
             }
         } while (!dishName.equals("exit"));
 
-        return dishList;
+        return dishesGetList;
     }
 
     @Transactional(propagation = Propagation.MANDATORY)
@@ -184,14 +187,19 @@ public class MenuController {
         List<Dish> dishList = new ArrayList<>();
         System.out.println("Do you want add or remove dish (add/remove)?:");
         String answer = scanner.nextLine();
-        if (answer.equals("add")) {
-            dishList = getDishes(scanner, dishesGetList, false);
-        } else if (answer.equals("remove")) {
-            dishList = getDishes(scanner, dishesGetList, true);
-        } else if (answer.equals("exit")) {
-        } else {
-            System.out.println("Wrong argument!");
-            dishAddOrRemove(scanner, menuName);
+        switch (answer) {
+            case "add":
+                dishList = getDishes(scanner, dishesGetList, false);
+                break;
+            case "remove":
+                dishList = getDishes(scanner, dishesGetList, true);
+                break;
+            case "exit":
+                break;
+            default:
+                System.out.println("Wrong argument!");
+                dishAddOrRemove(scanner, menuName);
+                break;
         }
         return dishList;
     }

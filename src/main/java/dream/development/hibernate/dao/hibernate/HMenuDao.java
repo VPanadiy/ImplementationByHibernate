@@ -1,7 +1,6 @@
 package dream.development.hibernate.dao.hibernate;
 
 import dream.development.hibernate.dao.interfaces.MenuDao;
-import dream.development.hibernate.model.Dish;
 import dream.development.hibernate.model.Menu;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,7 +20,7 @@ public class HMenuDao implements MenuDao {
 
     private SessionFactory sessionFactory;
 
-    public static final Logger LOGGER = LoggerFactory.getLogger(HDishDao.class);
+    public static final Logger LOGGER = LoggerFactory.getLogger(HMenuDao.class);
 
     @Override
     @Transactional(propagation = Propagation.MANDATORY)

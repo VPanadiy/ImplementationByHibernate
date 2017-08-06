@@ -1,7 +1,6 @@
 package dream.development.hibernate.dao.hibernate;
 
 import dream.development.hibernate.dao.interfaces.WarehouseDao;
-import dream.development.hibernate.model.Ingredient;
 import dream.development.hibernate.model.Warehouse;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,7 +20,7 @@ public class HWarehouseDao implements WarehouseDao {
 
     private SessionFactory sessionFactory;
 
-    public static final Logger LOGGER = LoggerFactory.getLogger(HDishDao.class);
+    public static final Logger LOGGER = LoggerFactory.getLogger(HWarehouseDao.class);
 
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
@@ -32,7 +31,7 @@ public class HWarehouseDao implements WarehouseDao {
     @Override
     @Transactional(propagation = Propagation.MANDATORY)
     public List<Warehouse> getAll() {
-        return sessionFactory.getCurrentSession().createQuery("SELECT w FROM Warehouse w ORDER BY w.id").list();
+        return sessionFactory.getCurrentSession().createQuery("SELECT w FROM Warehouse w ORDER BY w.ingredient.id").list();
     }
 
     @Override
@@ -48,7 +47,7 @@ public class HWarehouseDao implements WarehouseDao {
     @Transactional(propagation = Propagation.MANDATORY)
     public List<Warehouse> getIngredientWithConditionLess(Float amount) {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("SELECT w FROM Warehouse w WHERE w.amount < :amount ORDER BY w.id");
+        Query query = session.createQuery("SELECT w FROM Warehouse w WHERE w.amount < :amount ORDER BY w.ingredient.id");
         query.setParameter("amount", amount);
         return query.getResultList();
     }

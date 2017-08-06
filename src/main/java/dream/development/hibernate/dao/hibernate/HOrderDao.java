@@ -4,8 +4,9 @@ import dream.development.hibernate.dao.interfaces.OrdersDao;
 import dream.development.hibernate.model.Orders;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Projections;
 import org.hibernate.query.Query;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,8 @@ import java.util.List;
 public class HOrderDao implements OrdersDao {
 
     private SessionFactory sessionFactory;
+
+    public static final Logger LOGGER = LoggerFactory.getLogger(HOrderDao.class);
 
     @Override
     @Transactional(propagation = Propagation.MANDATORY)

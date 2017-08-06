@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:cache="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
 
     <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
+
+    <cache:annotation-driven/>
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:jdbc.properties"/>
@@ -23,9 +28,15 @@
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan" value="dream.development.hibernate.model"/>
         <property name="hibernateProperties">
-            <value>
-                hibernate.dialect=org.hibernate.dialect.PostgreSQL9Dialect
-            </value>
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL9Dialect</prop>
+                <prop key="hibernate.cache.use_second_level_cache">true</prop>
+                <prop key="hibernate.cache.use_query_cache">true</prop>
+                <prop key="hibernate.cache.provider_class">net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory</prop>
+                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</prop>
+                <prop key="hibernate.generate_statistics">true</prop>
+                <prop key="net.sf.ehcache.configurationResourceName">/ehcache.xml</prop>
+            </props>
         </property>
     </bean>
 

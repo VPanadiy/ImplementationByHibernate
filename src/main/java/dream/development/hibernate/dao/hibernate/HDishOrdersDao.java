@@ -21,7 +21,7 @@ public class HDishOrdersDao implements DishOrdersDao {
 
     private SessionFactory sessionFactory;
 
-    public static final Logger LOGGER = LoggerFactory.getLogger(HEmployeeDao.class);
+    public static final Logger LOGGER = LoggerFactory.getLogger(HDishOrdersDao.class);
 
     @Override
     @Transactional(propagation = Propagation.MANDATORY)

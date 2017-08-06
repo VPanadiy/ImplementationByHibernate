@@ -40,6 +40,8 @@
     <bean id="ingredientController" class="dream.development.hibernate.controllers.IngredientController">
         <property name="ingredientDao" ref="ingredientDao"/>
         <property name="warehouseDao" ref="warehouseDao"/>
+        <property name="dishToIngredientDao" ref="dishToIngredient"/>
+        <property name="dishDao" ref="dishDao"/>
     </bean>
 
     <bean id="warehouseController" class="dream.development.hibernate.controllers.WarehouseController">
@@ -53,6 +55,9 @@
         <property name="dishOrdersDao" ref="dishOrdersDao"/>
         <property name="employeeDao" ref="employeeDao"/>
         <property name="dishDao" ref="dishDao"/>
+        <property name="warehouseDao" ref="warehouseDao"/>
+        <property name="dishToIngredientDao" ref="dishToIngredient"/>
+        <property name="ingredientDao" ref="ingredientDao"/>
     </bean>
 
     <bean id="employeeDao" class="dream.development.hibernate.dao.hibernate.HEmployeeDao">
@@ -84,6 +89,10 @@
     </bean>
 
     <bean id="dishOrdersDao" class="dream.development.hibernate.dao.hibernate.HDishOrdersDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="dishToIngredient" class="dream.development.hibernate.dao.hibernate.HDishToIngredientDao">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 </beans>

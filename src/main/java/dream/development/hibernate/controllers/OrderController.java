@@ -101,16 +101,20 @@ public class OrderController {
         do {
             System.out.println("Do you want to add dish into order (y/n)");
             String answer = scanner.nextLine();
-            if (answer.equals("y")) {
-                Long orderIdFound = ordersDao.lastId() + 1;
-                List<Dish> dishesGetList = new ArrayList<>();
-                List<Dish> dishList = getDishes(scanner, dishesGetList, false, orderIdFound);
-                orders.setDishes(dishList);
-                exit = true;
-            } else if (answer.equals("n")) {
-                exit = true;
-            } else {
-                System.out.println("Wrong answer!");
+            switch (answer) {
+                case "y":
+                    Long orderIdFound = ordersDao.lastId() + 1;
+                    List<Dish> dishesGetList = new ArrayList<>();
+                    List<Dish> dishList = getDishes(scanner, dishesGetList, false, orderIdFound);
+                    orders.setDishes(dishList);
+                    exit = true;
+                    break;
+                case "n":
+                    exit = true;
+                    break;
+                default:
+                    System.out.println("Wrong answer!");
+                    break;
             }
 
         } while (!exit);
@@ -121,16 +125,15 @@ public class OrderController {
     private List<Dish> getDishes(Scanner scanner, List<Dish> dishesGetList, boolean isRemove, Long orderId) {
         Set<Dish> dishesSet = new HashSet<>(dishDao.getAll());
         List<String> dishNameList = new ArrayList<>();
-        List<Dish> dishList = dishesGetList;
         String dishName;
         int count = 1;
 
         for (Dish dish : dishesSet) {
-            String beginNumString = "name='";
-            String endNumString = "', ingredients=";
-            int beginNumParse = dish.toString().lastIndexOf(beginNumString) + beginNumString.length();
-            int endNumParse = dish.toString().indexOf(endNumString);
-            dishNameList.add(dish.toString().substring(beginNumParse, endNumParse));
+            String beginNameString = "name='";
+            String endNameString = "', ingredients=";
+            int beginNameParse = dish.toString().indexOf(beginNameString) + beginNameString.length();
+            int endNameParse = dish.toString().indexOf(endNameString);
+            dishNameList.add(dish.toString().substring(beginNameParse, endNameParse));
         }
 
         do {
@@ -148,7 +151,7 @@ public class OrderController {
 
             if (searchDish) {
                 if (!isRemove) {
-                    dishList.add(dishDao.getByName(dishName));
+                    dishesGetList.add(dishDao.getByName(dishName));
                     count++;
                 } else {
                     List<DishCreated> createdDishes = dishCreatedDao.getAll();
@@ -163,7 +166,7 @@ public class OrderController {
                     if (dishFound) {
                         System.out.println("Can`t remove created dish!");
                     } else {
-                        dishList.remove(dishDao.getByName(dishName));
+                        dishesGetList.remove(dishDao.getByName(dishName));
                         count++;
                     }
                 }
@@ -172,7 +175,7 @@ public class OrderController {
             }
         } while (!dishName.equals("exit"));
 
-        return dishList;
+        return dishesGetList;
     }
 
     private Employee getEmployee(Scanner scanner) {
@@ -244,7 +247,7 @@ public class OrderController {
 
     @Transactional(propagation = Propagation.MANDATORY)
     public void updateOrder() {
-        List<Dish> dishesList = new ArrayList<>();
+        List<Dish> dishesList;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please, enter id of the order which one you want to update (type \'exit\' to break): ");
         String searchOrderId = scanner.nextLine();
@@ -275,14 +278,19 @@ public class OrderController {
         List<Dish> dishList = new ArrayList<>();
         System.out.println("Do you want add or remove dish (add/remove)?:");
         String answer = scanner.nextLine();
-        if (answer.equals("add")) {
-            dishList = getDishes(scanner, dishesGetList, false, searchOrderId);
-        } else if (answer.equals("remove")) {
-            dishList = getDishes(scanner, dishesGetList, true, searchOrderId);
-        } else if (answer.equals("exit")) {
-        } else {
-            System.out.println("Wrong argument!");
-            dishAddOrRemove(scanner, searchOrderId);
+        switch (answer) {
+            case "add":
+                dishList = getDishes(scanner, dishesGetList, false, searchOrderId);
+                break;
+            case "remove":
+                dishList = getDishes(scanner, dishesGetList, true, searchOrderId);
+                break;
+            case "exit":
+                break;
+            default:
+                System.out.println("Wrong argument!");
+                dishAddOrRemove(scanner, searchOrderId);
+                break;
         }
         return dishList;
     }

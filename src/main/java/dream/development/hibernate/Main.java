@@ -8,7 +8,11 @@ import java.text.ParseException;
 import java.util.Scanner;
 
 /**
- * BOOT CLASS
+ * NEED TO BE CHANGED:
+ * 1. UpperCase/LowCase sensitive include
+ * 2. Add annotation of constraint on table
+ * 3. Try catch where need String enter Integer
+ * 4. Add Cache second level
  * Created by Splayd on 24.06.2017.
  */
 public class Main {

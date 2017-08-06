@@ -9,8 +9,8 @@
     </database>
     <schema id="3" parent="2" name="public">
       <ObjectId>2200</ObjectId>
-      <IntrospectionTimestamp>2017-07-29.16:46:49.825</IntrospectionTimestamp>
-      <IntrospectionStateNumber>778</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2017-08-06.19:01:41.244</IntrospectionTimestamp>
+      <IntrospectionStateNumber>843</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -29,164 +29,183 @@
     <schema id="8" parent="2" name="information_schema">
       <ObjectId>12081</ObjectId>
     </schema>
-    <sequence id="9" parent="3" name="dish_order_id_seq">
+    <sequence id="9" parent="3" name="dish_ingredient_id_seq">
+      <ObjectId>16553</ObjectId>
+      <StateNumber>841</StateNumber>
+      <SequenceIdentity>1</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
+    </sequence>
+    <sequence id="10" parent="3" name="dish_order_id_seq">
       <ObjectId>16529</ObjectId>
       <StateNumber>774</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <BelongsToColumn>1</BelongsToColumn>
     </sequence>
-    <table id="10" parent="3" name="dish">
+    <table id="11" parent="3" name="dish">
       <ObjectId>16395</ObjectId>
-      <StateNumber>774</StateNumber>
+      <StateNumber>841</StateNumber>
     </table>
-    <table id="11" parent="3" name="dish_created">
+    <table id="12" parent="3" name="dish_created">
       <ObjectId>16401</ObjectId>
       <StateNumber>659</StateNumber>
     </table>
-    <table id="12" parent="3" name="dish_to_ingredient">
-      <ObjectId>16404</ObjectId>
-      <StateNumber>661</StateNumber>
+    <table id="13" parent="3" name="dish_to_ingredient">
+      <ObjectId>16555</ObjectId>
+      <StateNumber>843</StateNumber>
     </table>
-    <table id="13" parent="3" name="dish_to_order">
+    <table id="14" parent="3" name="dish_to_order">
       <ObjectId>16531</ObjectId>
       <StateNumber>778</StateNumber>
     </table>
-    <table id="14" parent="3" name="employee">
+    <table id="15" parent="3" name="employee">
       <ObjectId>16410</ObjectId>
-      <StateNumber>664</StateNumber>
+      <StateNumber>820</StateNumber>
     </table>
-    <table id="15" parent="3" name="ingredient">
+    <table id="16" parent="3" name="ingredient">
       <ObjectId>16417</ObjectId>
-      <StateNumber>667</StateNumber>
+      <StateNumber>841</StateNumber>
     </table>
-    <table id="16" parent="3" name="menu">
+    <table id="17" parent="3" name="menu">
       <ObjectId>16423</ObjectId>
       <StateNumber>666</StateNumber>
     </table>
-    <table id="17" parent="3" name="menu_to_dishes">
+    <table id="18" parent="3" name="menu_to_dishes">
       <ObjectId>16429</ObjectId>
       <StateNumber>666</StateNumber>
     </table>
-    <table id="18" parent="3" name="orders">
+    <table id="19" parent="3" name="orders">
       <ObjectId>16432</ObjectId>
       <StateNumber>774</StateNumber>
     </table>
-    <table id="19" parent="3" name="warehouse">
+    <table id="20" parent="3" name="warehouse">
       <ObjectId>16435</ObjectId>
       <StateNumber>667</StateNumber>
     </table>
-    <column id="20" parent="10" name="id">
+    <column id="21" parent="11" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>620</StateNumber>
     </column>
-    <column id="21" parent="10" name="name">
+    <column id="22" parent="11" name="name">
       <Position>2</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>620</StateNumber>
     </column>
-    <column id="22" parent="10" name="cost">
+    <column id="23" parent="11" name="cost">
       <Position>3</Position>
       <DataType>real|0</DataType>
       <StateNumber>620</StateNumber>
     </column>
-    <column id="23" parent="10" name="weight">
+    <column id="24" parent="11" name="weight">
       <Position>4</Position>
       <DataType>real|0</DataType>
       <StateNumber>620</StateNumber>
     </column>
-    <column id="24" parent="10" name="category_id">
+    <column id="25" parent="11" name="category_id">
       <Position>5</Position>
       <DataType>integer|0</DataType>
       <StateNumber>620</StateNumber>
     </column>
-    <index id="25" parent="10" name="dish_pkey">
+    <index id="26" parent="11" name="dish_pkey">
       <ObjectId>16441</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="26" parent="10" name="dish_pkey">
+    <key id="27" parent="11" name="dish_pkey">
       <ObjectId>16442</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>dish_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="27" parent="10" name="dish_category_id_fkey">
+    <foreign-key id="28" parent="11" name="dish_category_id_fkey">
       <ObjectId>16453</ObjectId>
       <ColNames>category_id</ColNames>
       <RefTableName>menu</RefTableName>
       <RefKeyName>menu_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="28" parent="11" name="id">
+    <column id="29" parent="12" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>622</StateNumber>
     </column>
-    <column id="29" parent="11" name="dish_id">
+    <column id="30" parent="12" name="dish_id">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <StateNumber>622</StateNumber>
     </column>
-    <column id="30" parent="11" name="employee_id">
+    <column id="31" parent="12" name="employee_id">
       <Position>3</Position>
       <DataType>integer|0</DataType>
       <StateNumber>622</StateNumber>
     </column>
-    <column id="31" parent="11" name="order_id">
+    <column id="32" parent="12" name="order_id">
       <Position>4</Position>
       <DataType>integer|0</DataType>
       <StateNumber>622</StateNumber>
     </column>
-    <foreign-key id="32" parent="11" name="dish_created_dish_number_fkey">
+    <foreign-key id="33" parent="12" name="dish_created_dish_number_fkey">
       <ObjectId>16458</ObjectId>
       <ColNames>dish_id</ColNames>
       <RefTableName>dish</RefTableName>
       <RefKeyName>dish_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="33" parent="11" name="dish_created_employee_id_fkey">
+    <foreign-key id="34" parent="12" name="dish_created_employee_id_fkey">
       <ObjectId>16463</ObjectId>
       <ColNames>employee_id</ColNames>
       <RefTableName>employee</RefTableName>
       <RefKeyName>employee_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="34" parent="11" name="dish_created_order_id_fkey">
+    <foreign-key id="35" parent="12" name="dish_created_order_id_fkey">
       <ObjectId>16468</ObjectId>
       <ColNames>order_id</ColNames>
       <RefTableName>orders</RefTableName>
       <RefKeyName>guest_order_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="35" parent="12" name="dish_id">
+    <column id="36" parent="13" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
-      <StateNumber>624</StateNumber>
+      <NotNull>1</NotNull>
+      <StateNumber>841</StateNumber>
+      <SequenceName>dish_ingredient_id_seq</SequenceName>
+      <DefaultExpression>nextval(&apos;dish_ingredient_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="36" parent="12" name="ingredient_id">
+    <column id="37" parent="13" name="dish_id">
       <Position>2</Position>
       <DataType>integer|0</DataType>
-      <StateNumber>624</StateNumber>
+      <StateNumber>841</StateNumber>
     </column>
-    <foreign-key id="37" parent="12" name="dish_ingredient_dish_id_fkey">
-      <ObjectId>16473</ObjectId>
+    <column id="38" parent="13" name="ingredient_id">
+      <Position>3</Position>
+      <DataType>integer|0</DataType>
+      <StateNumber>841</StateNumber>
+    </column>
+    <column id="39" parent="13" name="amount">
+      <Position>4</Position>
+      <DataType>double precision|0</DataType>
+      <StateNumber>841</StateNumber>
+    </column>
+    <foreign-key id="40" parent="13" name="dish_ingredient_dish_id_fkey1">
+      <ObjectId>16559</ObjectId>
       <ColNames>dish_id</ColNames>
       <RefTableName>dish</RefTableName>
       <RefKeyName>dish_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="38" parent="12" name="dish_ingredient_ingredient_id_fkey">
-      <ObjectId>16478</ObjectId>
+    <foreign-key id="41" parent="13" name="dish_ingredient_ingredient_id_fkey1">
+      <ObjectId>16564</ObjectId>
       <ColNames>ingredient_id</ColNames>
       <RefTableName>ingredient</RefTableName>
       <RefKeyName>ingredient_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="39" parent="13" name="id">
+    <column id="42" parent="14" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
@@ -194,229 +213,235 @@
       <SequenceName>dish_order_id_seq</SequenceName>
       <DefaultExpression>nextval(&apos;dish_order_id_seq&apos;::regclass)</DefaultExpression>
     </column>
-    <column id="40" parent="13" name="order_id">
+    <column id="43" parent="14" name="order_id">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <StateNumber>774</StateNumber>
     </column>
-    <column id="41" parent="13" name="dish_id">
+    <column id="44" parent="14" name="dish_id">
       <Position>3</Position>
       <DataType>integer|0</DataType>
       <StateNumber>774</StateNumber>
     </column>
-    <column id="42" parent="13" name="is_created">
+    <column id="45" parent="14" name="is_created">
       <Position>4</Position>
       <DataType>boolean|0</DataType>
-      <StateNumber>774</StateNumber>
+      <StateNumber>790</StateNumber>
+      <DefaultExpression>false</DefaultExpression>
     </column>
-    <foreign-key id="43" parent="13" name="dish_order_order_id_fkey1">
+    <foreign-key id="46" parent="14" name="dish_order_order_id_fkey1">
       <ObjectId>16535</ObjectId>
       <ColNames>order_id</ColNames>
       <RefTableName>orders</RefTableName>
       <RefKeyName>guest_order_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="44" parent="13" name="dish_order_dish_id_fkey1">
+    <foreign-key id="47" parent="14" name="dish_order_dish_id_fkey1">
       <ObjectId>16540</ObjectId>
       <ColNames>dish_id</ColNames>
       <RefTableName>dish</RefTableName>
       <RefKeyName>dish_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="45" parent="14" name="id">
+    <column id="48" parent="15" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>628</StateNumber>
     </column>
-    <column id="46" parent="14" name="surname">
+    <column id="49" parent="15" name="surname">
       <Position>2</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>628</StateNumber>
     </column>
-    <column id="47" parent="14" name="name">
+    <column id="50" parent="15" name="name">
       <Position>3</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>628</StateNumber>
     </column>
-    <column id="48" parent="14" name="date_birth">
+    <column id="51" parent="15" name="date_birth">
       <Position>4</Position>
       <DataType>date|0</DataType>
       <StateNumber>628</StateNumber>
     </column>
-    <column id="49" parent="14" name="phone_number">
+    <column id="52" parent="15" name="phone_number">
       <Position>5</Position>
       <DataType>text|0</DataType>
       <StateNumber>628</StateNumber>
     </column>
-    <column id="50" parent="14" name="appointment">
+    <column id="53" parent="15" name="appointment">
       <Position>6</Position>
       <DataType>text|0</DataType>
       <StateNumber>628</StateNumber>
     </column>
-    <column id="51" parent="14" name="salary">
+    <column id="54" parent="15" name="salary">
       <Position>7</Position>
       <DataType>numeric(9,2)|0</DataType>
       <StateNumber>628</StateNumber>
     </column>
-    <index id="52" parent="14" name="employee_pkey">
+    <column id="55" parent="15" name="dtype">
+      <Position>8</Position>
+      <DataType>varchar|0</DataType>
+      <StateNumber>820</StateNumber>
+    </column>
+    <index id="56" parent="15" name="employee_pkey">
       <ObjectId>16443</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="53" parent="14" name="employee_pkey">
+    <key id="57" parent="15" name="employee_pkey">
       <ObjectId>16444</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>employee_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <check id="54" parent="14" name="employee_phone_number_check">
+    <check id="58" parent="15" name="employee_phone_number_check">
       <ObjectId>16413</ObjectId>
       <ColNames>phone_number</ColNames>
       <Predicate>phone_number ~ &apos;^\+\d{2}\(\d{3}\)\d{3}-\d{2}-\d{2}$&apos;::text</Predicate>
     </check>
-    <column id="55" parent="15" name="id">
+    <column id="59" parent="16" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>630</StateNumber>
     </column>
-    <column id="56" parent="15" name="name">
+    <column id="60" parent="16" name="name">
       <Position>2</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>630</StateNumber>
     </column>
-    <index id="57" parent="15" name="ingredient_pkey">
+    <index id="61" parent="16" name="ingredient_pkey">
       <ObjectId>16447</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="58" parent="15" name="unique_name">
+    <index id="62" parent="16" name="unique_name">
       <ObjectId>16451</ObjectId>
       <ColNames>name</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="59" parent="15" name="ingredient_pkey">
+    <key id="63" parent="16" name="ingredient_pkey">
       <ObjectId>16448</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>ingredient_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <key id="60" parent="15" name="unique_name">
+    <key id="64" parent="16" name="unique_name">
       <ObjectId>16452</ObjectId>
       <ColNames>name</ColNames>
       <UnderlyingIndexName>unique_name</UnderlyingIndexName>
     </key>
-    <column id="61" parent="16" name="id">
+    <column id="65" parent="17" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>632</StateNumber>
     </column>
-    <column id="62" parent="16" name="name">
+    <column id="66" parent="17" name="name">
       <Position>2</Position>
       <DataType>text|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>632</StateNumber>
     </column>
-    <index id="63" parent="16" name="menu_pkey">
+    <index id="67" parent="17" name="menu_pkey">
       <ObjectId>16449</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="64" parent="16" name="menu_pkey">
+    <key id="68" parent="17" name="menu_pkey">
       <ObjectId>16450</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>menu_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="65" parent="17" name="menu_id">
+    <column id="69" parent="18" name="menu_id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <StateNumber>634</StateNumber>
     </column>
-    <column id="66" parent="17" name="dish_id">
+    <column id="70" parent="18" name="dish_id">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <StateNumber>634</StateNumber>
     </column>
-    <foreign-key id="67" parent="17" name="menu_dishes_menu_id_fkey">
+    <foreign-key id="71" parent="18" name="menu_dishes_menu_id_fkey">
       <ObjectId>16503</ObjectId>
       <ColNames>menu_id</ColNames>
       <RefTableName>menu</RefTableName>
       <RefKeyName>menu_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="68" parent="17" name="menu_dishes_dish_id_fkey">
+    <foreign-key id="72" parent="18" name="menu_dishes_dish_id_fkey">
       <ObjectId>16498</ObjectId>
       <ColNames>dish_id</ColNames>
       <RefTableName>dish</RefTableName>
       <RefKeyName>dish_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="69" parent="18" name="id">
+    <column id="73" parent="19" name="id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <NotNull>1</NotNull>
       <StateNumber>636</StateNumber>
     </column>
-    <column id="70" parent="18" name="table_number">
+    <column id="74" parent="19" name="table_number">
       <Position>2</Position>
       <DataType>integer|0</DataType>
       <StateNumber>636</StateNumber>
     </column>
-    <column id="71" parent="18" name="date_order">
+    <column id="75" parent="19" name="date_order">
       <Position>3</Position>
       <DataType>date|0</DataType>
       <StateNumber>636</StateNumber>
     </column>
-    <column id="72" parent="18" name="employee_id">
+    <column id="76" parent="19" name="employee_id">
       <Position>4</Position>
       <DataType>integer|0</DataType>
       <StateNumber>636</StateNumber>
     </column>
-    <column id="73" parent="18" name="is_closed">
+    <column id="77" parent="19" name="is_closed">
       <Position>5</Position>
       <DataType>boolean|0</DataType>
       <StateNumber>636</StateNumber>
     </column>
-    <index id="74" parent="18" name="guest_order_pkey">
+    <index id="78" parent="19" name="guest_order_pkey">
       <ObjectId>16445</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="75" parent="18" name="guest_order_pkey">
+    <key id="79" parent="19" name="guest_order_pkey">
       <ObjectId>16446</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>guest_order_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="76" parent="18" name="guest_order_employee_id_fkey">
+    <foreign-key id="80" parent="19" name="guest_order_employee_id_fkey">
       <ObjectId>16493</ObjectId>
       <ColNames>employee_id</ColNames>
       <RefTableName>employee</RefTableName>
       <RefKeyName>employee_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="77" parent="19" name="ingredient_id">
+    <column id="81" parent="20" name="ingredient_id">
       <Position>1</Position>
       <DataType>integer|0</DataType>
       <StateNumber>638</StateNumber>
     </column>
-    <column id="78" parent="19" name="amount">
+    <column id="82" parent="20" name="amount">
       <Position>2</Position>
       <DataType>real|0</DataType>
       <StateNumber>638</StateNumber>
     </column>
-    <column id="79" parent="19" name="unit">
+    <column id="83" parent="20" name="unit">
       <Position>3</Position>
       <DataType>text|0</DataType>
       <StateNumber>638</StateNumber>
     </column>
-    <foreign-key id="80" parent="19" name="warehouse_ingredient_id_fkey">
+    <foreign-key id="84" parent="20" name="warehouse_ingredient_id_fkey">
       <ObjectId>16508</ObjectId>
       <ColNames>ingredient_id</ColNames>
       <RefTableName>ingredient</RefTableName>

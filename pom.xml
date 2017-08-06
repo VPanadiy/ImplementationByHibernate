@@ -19,6 +19,7 @@
         <version-maven-project-info-reports-plugin>2.7</version-maven-project-info-reports-plugin>
 
         <version-junit>4.11</version-junit>
+        <version-testng>6.11</version-testng>
 
         <version-postgresql>9.1-901.jdbc4</version-postgresql>
         <version-c3p0>0.9.5.2</version-c3p0>
@@ -33,6 +34,11 @@
         <version-spring-orm>4.3.7.RELEASE</version-spring-orm>
 
         <version-hibernate-core>5.2.10.Final</version-hibernate-core>
+        <version-hibernate-ehcache>5.2.10.Final</version-hibernate-ehcache>
+
+        <version-mockito-all>1.9.5</version-mockito-all>
+
+        <version-ehcache>2.10.4</version-ehcache>
     </properties>
 
     <build>
@@ -82,6 +88,13 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>${version-junit}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${version-testng}</version>
             <scope>test</scope>
         </dependency>
 
@@ -140,11 +153,29 @@
             <version>${version-spring-orm}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>${version-hibernate-core}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-ehcache</artifactId>
+            <version>${version-hibernate-ehcache}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>${version-mockito-all}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>${version-ehcache}</version>
         </dependency>
 
     </dependencies>

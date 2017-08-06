@@ -1,9 +1,7 @@
 package dream.development.hibernate.controllers;
 
 import dream.development.hibernate.dao.interfaces.*;
-import dream.development.hibernate.model.DishCreated;
-import dream.development.hibernate.model.DishOrders;
-import dream.development.hibernate.model.Employee;
+import dream.development.hibernate.model.*;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +19,9 @@ public class DishCreatedController {
     private DishOrdersDao dishOrdersDao;
     private DishDao dishDao;
     private EmployeeDao employeeDao;
+    private DishToIngredientDao dishToIngredientDao;
+    private WarehouseDao warehouseDao;
+    private IngredientDao ingredientDao;
 
     @Transactional
     public void chooseAction() throws ParseException {
@@ -81,24 +82,57 @@ public class DishCreatedController {
 
         boolean dishFound = false;
         for (Map.Entry<Long, String> entry : dishOpenedMap.entrySet()) {
-            if (entry.getValue().equals(dishName)) {
-                dishFound = true;
-                System.out.println("Enter cooker name:");
-                String employeeName = scanner.nextLine();
-                List<Employee> cookerList = new ArrayList<>();
-                cookerList.add(employeeDao.getByName(employeeName));
+            if (!dishFound) {
+                if (entry.getValue().equals(dishName)) {
+                    dishFound = true;
+                    System.out.println("Enter cooker name:");
+                    String employeeName = scanner.nextLine();
+                    List<Employee> cookerList = new ArrayList<>();
+                    cookerList.add(employeeDao.getByName(employeeName));
 
-                if (cookerList.get(0) == null) {
-                    System.out.println("Cooker with such name not found!");
-                } else {
-                    dishCreated.setDishId(dishDao.getByName(dishName));
-                    dishCreated.setOrderId(ordersDao.getById(dishOrdersDao.getById(entry.getKey()).getOrders().getId()));
-                    dishCreated.setCook(employeeDao.getByName(employeeName));
-                    dishCreatedDao.insert(dishCreated);
+                    if (cookerList.get(0) == null) {
+                        System.out.println("Cooker with such name not found!");
+                    } else {
+                        boolean changeEnoughVale = false;
+                        boolean enoughIngredient = true;
+                        long dishId = dishDao.getByName(dishName).getId();
+                        List<DishToIngredient> dishToIngredientList = dishToIngredientDao.getById(dishId);
+                        for (DishToIngredient ingredient : dishToIngredientList) {
+                            float amount = ingredient.getAmount();
+                            String ingredientName = ingredientDao.getById(ingredient.getIngredient().getId()).toString().replace("\'", "");
+                            Warehouse warehouse = warehouseDao.getByName(ingredientName);
+                            float amountResult = warehouse.getAmount() - amount;
+                            if (!changeEnoughVale) {
+                                if (amountResult < 0) {
+                                    enoughIngredient = false;
+                                    changeEnoughVale = true;
+                                }
+                            }
+                        }
 
-                    DishOrders dishOrders = dishOrdersDao.getById(entry.getKey());
-                    dishOrders.setStatus(true);
-                    dishOrdersDao.update(dishOrders);
+                        if (!enoughIngredient) {
+                            System.out.println("Not enough ingredients!");
+                        } else {
+                            dishCreated.setDishId(dishDao.getByName(dishName));
+                            dishCreated.setOrderId(ordersDao.getById(dishOrdersDao.getById(entry.getKey()).getOrders().getId()));
+                            dishCreated.setCook(employeeDao.getByName(employeeName));
+                            dishCreatedDao.insert(dishCreated);
+
+                            DishOrders dishOrders = dishOrdersDao.getById(entry.getKey());
+                            dishOrders.setStatus(true);
+                            dishOrdersDao.update(dishOrders);
+
+                            for (DishToIngredient ingredient : dishToIngredientList) {
+                                float amount = ingredient.getAmount();
+                                String ingredientName = ingredientDao.getById(ingredient.getIngredient().getId()).toString().replace("\'", "");
+                                Warehouse warehouse = warehouseDao.getByName(ingredientName);
+                                float amountResult = warehouse.getAmount() - amount;
+
+                                warehouse.setAmount(amountResult);
+                                warehouseDao.update(warehouse);
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -136,5 +170,17 @@ public class DishCreatedController {
 
     public void setEmployeeDao(EmployeeDao employeeDao) {
         this.employeeDao = employeeDao;
+    }
+
+    public void setDishToIngredientDao(DishToIngredientDao dishToIngredientDao) {
+        this.dishToIngredientDao = dishToIngredientDao;
+    }
+
+    public void setWarehouseDao(WarehouseDao warehouseDao) {
+        this.warehouseDao = warehouseDao;
+    }
+
+    public void setIngredientDao(IngredientDao ingredientDao) {
+        this.ingredientDao = ingredientDao;
     }
 }
